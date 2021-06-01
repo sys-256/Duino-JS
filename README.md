@@ -23,7 +23,7 @@ didn't work, so I decided to write one myself in JavaScript, to use on my future
 ## Usage
 It calculates the hashes with ©jsHashes, so you need to import that too:
 ```html
-<script src="https://cdn.rawgit.com/h2non/jsHashes/master/hashes.min.js"></script> <!--imports the jsHashes library-->
+<script src="https://raw.githubusercontent.com/h2non/jshashes/master/hashes.min.js"></script> <!--imports the jsHashes library-->
 <script src="https://raw.githubusercontent.com/Hoiboy19/Duino-JS/main/duino-js.min.js"></script> <!--imports the Duino-JS library-->
 <script>
     var username = "Hoiboy19"; //put you username here (e.g. revox, ericddm, snehaislove or Hoiboy19), the default is Hoiboy19.
