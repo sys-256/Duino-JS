@@ -1,5 +1,5 @@
 var username = "Hoiboy19";
-var socketip = "ws://51.15.127.80:14808/";
+var socketip = "wss://server.duinocoin.com:15808/";
 var SHA1 = new Hashes.SHA1();
 var soc = new WebSocket(socketip, "protocolOne");
 soc.onmessage = function (event)
