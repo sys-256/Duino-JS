@@ -2,7 +2,7 @@
 var username = "Hoiboy19";
 
 //creats the variable "socketip", so the server ip can be changed easily
-let socketip = "ws://51.15.127.80:14808/";
+let socketip = "wss://server.duinocoin.com:15808/";
 
 //makes the variable "SHA1", that calculated a SHA1 hash
 var SHA1 = new Hashes.SHA1();

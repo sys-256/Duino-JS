@@ -4,7 +4,7 @@
 var SHA1 = new Hashes.SHA1();
 
 //creats the variable "socketip", so the server ip can be changed easily
-let socketip = "ws://51.15.127.80:14808/";
+let socketip = "wss://server.duinocoin.com:15808/";
 
 //makes a connection with the server
 var soc = new WebSocket(socketip, "protocolOne");
