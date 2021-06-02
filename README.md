@@ -32,12 +32,5 @@ It calculates the hashes with ©jsHashes, so you need to import that too:
 </script>
 ```
 
-## Notes
-If you are serving this on a HTTPS website, it will NOT work because you can only use WebSocket Secure (WSS) on HTTPS, and not WebSocket (WS).
-
-To resolve this problem, you need to setup a reverse proxy, here is a tutorial for [NGINX](https://www.serverlab.ca/tutorials/linux/web-servers-linux/how-to-proxy-wss-websockets-with-nginx/) and for [Apache](https://stackoverflow.com/questions/38838567/proxy-websocket-wss-to-ws-apache).
-
-If your website uses HTTP, everything should be fine.
-
 ## License
 This project is licensed under [the MIT license](https://en.wikipedia.org/wiki/MIT_License), so you can use it in whatever you want, even commercial projects. You only have to credit me with Hoiboy19.
