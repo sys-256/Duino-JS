@@ -8,68 +8,72 @@ var username = "Hoiboy19";
 //creats the variable "socketip", so the server ip can be changed easily
 var wssdomain = "wss://server.duinocoin.com:15808/";
 
-//makes a connection with the server
-var soc = new WebSocket(wssdomain);
-
-//executes when the server sends a message (when you make a connection with the server, it automatically sends the server version (2.4 right now))
-soc.onmessage = function (event)
+function startMiner ()
 {
-    if (event.data.includes("GOOD"))
+    //makes a connection with the server
+    var soc = new WebSocket(wssdomain);
+
+    //executes when the server sends a message (when you make a connection with the server, it automatically sends the server version (2.4 right now))
+    soc.onmessage = function (event)
     {
-        //shows in the console that the share was correct
-        console.log(" and the share was correct!\n");
-        //shows in the console that it's requesting a new job
-        console.log("Requesting a new job...\n");
-        //asks for a new job
-        soc.send("JOB," + username + ",LOW", encoding="utf8")
-    }
-    else if (event.data.includes("BAD"))
-    {
-        //shows in the console that the share was wrong
-        console.log(" and the share was wrong...\n");
-        //shows in the console that it's requesting a new job
-        console.log("Requesting a new job...\n");
-        //asks for a new job
-        soc.send("JOB," + username + ",LOW", encoding="utf8")
-    }
-    else if (event.data.includes("2.")){}
-    else
-    {
-        //shows in console that it recieved a new job, and shows the contents
-        console.log("New job recieved! It contains: " + event.data);
-        //splits the job in multiple pieces
-        var job = event.data.split(",");
-        //the difficulty is piece number 2 (counting from 0), and gets selected as a variable
-        var difficulty = job[2];
-        //looks at the time in milliseconds, and puts it in a variable
-        var t0 = performance.now();
-        //it starts hashing
-        for (result=0; result < 100 * difficulty + 1; result++)
+        if (event.data.includes("GOOD"))
         {
-            //makes a variable called "ducos1", and it contains a calculated SHA1 hash for job[0] + the result
-            ducos1 = new Hashes.SHA1().hex(job[0] + result)
-            //executes if the given job is the same as the calculated hash 
-            if (job[1] === ducos1)
+            //shows in the console that the share was correct
+            console.log(" and the share was correct!\n");
+            //shows in the console that it's requesting a new job
+            console.log("Requesting a new job...\n");
+            //asks for a new job
+            soc.send("JOB," + username + ",LOW", encoding="utf8")
+        }
+        else if (event.data.includes("BAD"))
+        {
+            //shows in the console that the share was wrong
+            console.log(" and the share was wrong...\n");
+            //shows in the console that it's requesting a new job
+            console.log("Requesting a new job...\n");
+            //asks for a new job
+            soc.send("JOB," + username + ",LOW", encoding="utf8")
+        }
+        else if (event.data.includes("2.")){}
+        else
+        {
+            //shows in console that it recieved a new job, and shows the contents
+            console.log("New job recieved! It contains: " + event.data);
+            //splits the job in multiple pieces
+            var job = event.data.split(",");
+            //the difficulty is piece number 2 (counting from 0), and gets selected as a variable
+            var difficulty = job[2];
+            //looks at the time in milliseconds, and puts it in a variable
+            var t0 = performance.now();
+            //it starts hashing
+            for (result=0; result < 100 * difficulty + 1; result++)
             {
-                //looks at the time in milliseconds, and puts it in a variable
-                var t1 = performance.now();
-                //calculates the time it took to generate the hash, and divides it by 1000 (to convert it from milliseconds to seconds)
-                var timeDifference = (t1 - t0) / 1000;
-                //calculates the hashrate with max 2 decimals
-                var hashrate = (result / timeDifference).toFixed(2);
-                //sends the result to the server
-                console.log("The hashrate is " + hashrate + " H/s. Sending the result back to the server...");
-                soc.send(result + "," + hashrate + ",Duino-JS v1.0 by Hoiboy19,Duino-JS")
+                //makes a variable called "ducos1", and it contains a calculated SHA1 hash for job[0] + the result
+                ducos1 = new Hashes.SHA1().hex(job[0] + result)
+                //executes if the given job is the same as the calculated hash 
+                if (job[1] === ducos1)
+                {
+                    //looks at the time in milliseconds, and puts it in a variable
+                    var t1 = performance.now();
+                    //calculates the time it took to generate the hash, and divides it by 1000 (to convert it from milliseconds to seconds)
+                    var timeDifference = (t1 - t0) / 1000;
+                    //calculates the hashrate with max 2 decimals
+                    var hashrate = (result / timeDifference).toFixed(2);
+                    //shows the hashrate in the console
+                    console.log("The hashrate is " + hashrate + " H/s. Sending the result back to the server...");
+                    //sends the result to the server
+                    soc.send(result + "," + hashrate + ",Duino-JS v1.0 by Hoiboy19,Duino-JS")
+                }
             }
         }
     }
-}
 
-//if it makes a connections with the server, this will get executed
-soc.onopen = function ()
-{
-    //shows in the console that it's requesting a new job
-    console.log("Requesting a new job...\n");
-    //requests a job
-    soc.send("JOB," + username + ",LOW", encoding="utf8")
+    //if it makes a connections with the server, this will get executed
+    soc.onopen = function ()
+    {
+        //shows in the console that it's requesting a new job
+        console.log("Requesting a new job...\n");
+        //requests a job
+        soc.send("JOB," + username + ",LOW", encoding="utf8")
+    }
 }
