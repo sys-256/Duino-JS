@@ -28,7 +28,7 @@ To use the miner, put this at the end of your html:
 <script src="https://raw.githubusercontent.com/Hoiboy19/Duino-JS/main/duino-js.min.js"></script> <!--imports the Duino-JS miner-->
 <script>
     var username = "Hoiboy19"; //put your username here (e.g. revox, ericddm, snehaislove or Hoiboy19), the default is Hoiboy19.
-    startMiner();
+    startMiner(); //starts the miner
 </script>
 ```
 
