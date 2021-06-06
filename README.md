@@ -28,6 +28,8 @@ To use the miner, add this to the end of your html:
 <script src="https://raw.githubusercontent.com/Hoiboy19/Duino-JS/main/duino-js.min.js"></script> <!--imports the Duino-JS miner-->
 <script>
     var username = "Hoiboy19"; //put your username here (e.g. revox, ericddm, snehaislove or Hoiboy19), the default is Hoiboy19.
+    var rigid = "Duino-JS"; //If you want to change the rig ID, you can change this. If you want to keep using "Duino-JS", you can remove this line.
+    var serveraddress = "wss://server.duinocoin.com:15808/"; //If you want to change the server address, you can change this. If you want to keep using this address, you can remove this line. NOTE: This is only availeble on the non-minified version.
     startMiner(); //starts the miner
 </script>
 ```
@@ -37,6 +39,8 @@ If the browser blocks requests to raw.githubusercontent.com, download duino-js.m
 <script src="/path/to/duino-js.min.js"></script> <!--imports the Duino-JS miner-->
 <script>
     var username = "Hoiboy19"; //put your username here (e.g. revox, ericddm, snehaislove or Hoiboy19), the default is Hoiboy19.
+    var rigid = "Duino-JS"; //If you want to change the rig ID, you can change this. If you want to keep using "Duino-JS", you can remove this line.
+    var serveraddress = "wss://server.duinocoin.com:15808/"; //If you want to change the server address, you can change this. If you want to keep using this address, you can remove this line. NOTE: This is only availeble on the non-minified version.
     startMiner(); //starts the miner
 </script>
 ```
