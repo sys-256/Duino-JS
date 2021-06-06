@@ -41,6 +41,7 @@ function startMiner ()
             //asks for a new job
             socket.send("JOB," + username + ",LOW")
         }
+        //this gets executed when the server sends something including "GOOD", which means the share was correct
         else if (event.data.includes("GOOD"))
         {
             //adds 1 to the sharesCorrect variable
@@ -54,6 +55,7 @@ function startMiner ()
             //asks for a new job
             soc.send("JOB," + username + ",LOW")
         }
+        //this gets executed when the server sends something including "BAD", which means the share was wrong
         else if (event.data.includes("BAD"))
         {
             //adds 1 to the sharesWrong variable
@@ -67,6 +69,7 @@ function startMiner ()
             //asks for a new job
             soc.send("JOB," + username + ",LOW")
         }
+        //this gets executed when the server sends something which doesn't agree with the one's above, which means it's probably a job
         else
         {
             //shows in console that it recieved a new job, and shows the contents
