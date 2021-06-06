@@ -6,24 +6,29 @@
 var username = "Hoiboy19";
 
 //creats the variable "socketip", so the server ip can be changed easily
-var wssdomain = "wss://server.duinocoin.com:15808/";
+var serveraddress = "wss://server.duinocoin.com:15808/";
 
 function startMiner ()
 {
     //makes a connection with the server
-    var soc = new WebSocket(wssdomain);
+    var soc = new WebSocket(serveraddress);
 
     //executes when the server sends a message (when you make a connection with the server, it automatically sends the server version (2.4 right now))
     soc.onmessage = function (event)
     {
-        if (event.data.includes("GOOD"))
+        if (event.data.includes("2."))
+        {
+            //if it sends its version, it will show up in console
+            console.log("The server is on version " + event.data);
+        }
+        else if (event.data.includes("GOOD"))
         {
             //shows in the console that the share was correct
             console.log(" and the share was correct!\n");
             //shows in the console that it's requesting a new job
             console.log("Requesting a new job...\n");
             //asks for a new job
-            soc.send("JOB," + username + ",LOW", encoding="utf8")
+            soc.send("JOB," + username + ",LOW")
         }
         else if (event.data.includes("BAD"))
         {
@@ -32,9 +37,8 @@ function startMiner ()
             //shows in the console that it's requesting a new job
             console.log("Requesting a new job...\n");
             //asks for a new job
-            soc.send("JOB," + username + ",LOW", encoding="utf8")
+            soc.send("JOB," + username + ",LOW")
         }
-        else if (event.data.includes("2.")){}
         else
         {
             //shows in console that it recieved a new job, and shows the contents
@@ -44,7 +48,7 @@ function startMiner ()
             //the difficulty is piece number 2 (counting from 0), and gets selected as a variable
             var difficulty = job[2];
             //looks at the time in milliseconds, and puts it in a variable
-            var t0 = performance.now();
+            var startingTime = performance.now();
             //it starts hashing
             for (result=0; result < 100 * difficulty + 1; result++)
             {
@@ -54,9 +58,9 @@ function startMiner ()
                 if (job[1] === ducos1)
                 {
                     //looks at the time in milliseconds, and puts it in a variable
-                    var t1 = performance.now();
+                    var endingTime = performance.now();
                     //calculates the time it took to generate the hash, and divides it by 1000 (to convert it from milliseconds to seconds)
-                    var timeDifference = (t1 - t0) / 1000;
+                    var timeDifference = (endingTime - startingTime) / 1000;
                     //calculates the hashrate with max 2 decimals
                     var hashrate = (result / timeDifference).toFixed(2);
                     //shows the hashrate in the console
@@ -74,6 +78,6 @@ function startMiner ()
         //shows in the console that it's requesting a new job
         console.log("Requesting a new job...\n");
         //requests a job
-        soc.send("JOB," + username + ",LOW", encoding="utf8")
+        soc.send("JOB," + username + ",LOW")
     }
 }
