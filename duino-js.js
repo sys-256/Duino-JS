@@ -14,13 +14,10 @@ var username = "Hoiboy19";
 //the standerd rig ID, but if you specify your own in another script, it will you that one
 var rigid = "Duino-JS";
 
-//creats the variable "socketip", so the server ip can be changed easily
-var serveraddress = "wss://server.duinocoin.com:15808/";
-
 function startMiner ()
 {
     //makes a connection with the server
-    var soc = new WebSocket(serveraddress);
+    var soc = new WebSocket("wss://server.duinocoin.com:15808/");
 
     //executes when the server sends a message (when you make a connection with the server, it automatically sends the server version (2.4 right now))
     soc.onmessage = function (event)
