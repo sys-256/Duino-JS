@@ -1,5 +1,3 @@
-UPDATE: The Duino-Coin server is overloaded, so mining is now disabled. It be enabled soon, when pools come out, but until then, the miner won't work.
-
 ## Why
 I am developing my own site since a few months, and I wanted to make some money of it, but because you have to give a credit card number and your address to the ad provider (usually Google), I searched for alternatives.
 
