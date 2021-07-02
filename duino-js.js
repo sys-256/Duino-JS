@@ -17,10 +17,10 @@ var rigid = "Duino-JS";
 function startMiner ()
 {
     //makes a connection with the server
-    var soc = new WebSocket("wss://server.duinocoin.com:15808/");
+    var socket = new WebSocket("wss://server.duinocoin.com:14808/");
 
     //executes when the server sends a message (when you make a connection with the server, it automatically sends the server version (2.4 right now))
-    soc.onmessage = function (event)
+    socket.onmessage = function (event)
     {
         //this gets executed when the server sends something including "2.", which is the server version which it automattically sends
         if (event.data.includes("2."))
@@ -50,7 +50,7 @@ function startMiner ()
             //shows in the console that it's requesting a new job
             console.log("Requesting a new job...\n");
             //asks for a new job
-            soc.send("JOB," + username + ",LOW")
+            socket.send("JOB," + username + ",LOW")
         }
         //this gets executed when the server sends something including "BAD", which means the share was wrong
         else if (event.data.includes("BAD"))
@@ -64,7 +64,7 @@ function startMiner ()
             //shows in the console that it's requesting a new job
             console.log("Requesting a new job...\n");
             //asks for a new job
-            soc.send("JOB," + username + ",LOW")
+            socket.send("JOB," + username + ",LOW")
         }
         //this gets executed when the server sends something which doesn't agree with the one's above, which means it's probably a job
         else
@@ -94,7 +94,7 @@ function startMiner ()
                     //shows the hashrate in the console
                     console.log("The hashrate is " + hashrate + " H/s. Sending the result back to the server...");
                     //sends the result to the server
-                    soc.send(result + "," + hashrate + ",Duino-JS v1.0 by Hoiboy19," + rigid)
+                    socket.send(result + "," + hashrate + ",Duino-JS v1.0 by Hoiboy19," + rigid)
                 }
             }
         }
