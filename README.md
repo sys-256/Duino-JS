@@ -20,22 +20,13 @@ didn't work, so I decided to write one myself in JavaScript, to use on my future
 ## Features
 - A LOT of comments, and if you want to, it can console.log() everything it sends or receives from the server.
 - Connects to the WebSocket server via a secured protocol (WSS).
-- The username to mine to can be changed easily, just like the server domain or IP and protocol (if that ever changes).
+- The username to mine to can be changed easily, just like the rigid (how the miner appears in the wallet).
+- Runs in a Web Worker, so the performance of your site won't be interrupted.
 
 ## Usage
-To use the miner, add this to the end of your html:
+To use the miner, download the duino-js folder from the latest release, place the duino-js folder in the root of your site and add this to the end of your html:
 ```html
-<script src="https://raw.githubusercontent.com/Hoiboy19/Duino-JS/main/duino-js.min.js"></script> <!--imports the Duino-JS miner-->
-<script>
-    var username = "Hoiboy19"; //put your username here (e.g. revox, ericddm, snehaislove or Hoiboy19), the default is Hoiboy19.
-    var rigid = "Duino-JS"; //If you want to change the rig ID, you can change this. If you want to keep using "Duino-JS", you can remove this line.
-    startMiner(); //starts the miner
-</script>
-```
-
-If the browser blocks requests to raw.githubusercontent.com, download duino-js.min.js and use this code:
-```html
-<script src="/path/to/duino-js.min.js"></script> <!--imports the Duino-JS miner-->
+<script src="/duino-js/duino-js.min.js"></script> <!--imports the Duino-JS miner-->
 <script>
     var username = "Hoiboy19"; //put your username here (e.g. revox, ericddm, snehaislove or Hoiboy19), the default is Hoiboy19.
     var rigid = "Duino-JS"; //If you want to change the rig ID, you can change this. If you want to keep using "Duino-JS", you can remove this line.
