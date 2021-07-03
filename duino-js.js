@@ -1,9 +1,3 @@
-//makes the variable sharesCorrect and sets it to 0
-var sharesCorrect = 0;
-
-//makes the variable sharesWrong and sets it to 0
-var sharesWrong = 0;
-
 //my username, which it autmattically mines for (no worries, if you specify you own username in a script below the script:src markup, it will use your username)
 var username = "Hoiboy19";
 
@@ -24,26 +18,14 @@ function startMiner ()
         {
             //shows the server version in console
             console.log("The server is on version " + event.data);
-            //send the message "PING" to the server, after which it should respond with "Pong!"
-            socket.send("PING")
-        }
-        //this gets executed when the server sends something including "Pong!", which is the response of "PING", which we send earlier
-        else if (event.data.includes("Pong!"))
-        {
-            //shows in console that it is requesting a new job
-            console.log("Requesting a new job...");
-            //asks for a new job
+            //asks for a job
             socket.send("JOB," + username + ",LOW")
         }
         //this gets executed when the server sends something including "GOOD", which means the share was correct
         else if (event.data.includes("GOOD"))
         {
-            //adds 1 to the sharesCorrect variable
-            sharesCorrect++;
             //shows in the console that the share was correct
             console.log(" and the share was correct!\n");
-            //shows in console how many shares you had correct and wrong
-            console.log("You now have " + sharesCorrect + " share(s) correct, and " + sharesWrong + " wrong.");
             //shows in the console that it's requesting a new job
             console.log("Requesting a new job...\n");
             //asks for a new job
@@ -52,12 +34,8 @@ function startMiner ()
         //this gets executed when the server sends something including "BAD", which means the share was wrong
         else if (event.data.includes("BAD"))
         {
-            //adds 1 to the sharesWrong variable
-            sharesWrong++;
             //shows in the console that the share was wrong
             console.log(" and the share was wrong...\n");
-            //shows in console how many shares you had correct and wrong
-            console.log("You now have " + sharesCorrect + " share(s) correct, and " + sharesWrong + " wrong.");
             //shows in the console that it's requesting a new job
             console.log("Requesting a new job...\n");
             //asks for a new job
