@@ -24,9 +24,9 @@ didn't work, so I decided to write one myself in JavaScript, to use on my future
 - Runs in a Web Worker, so the performance of your site won't be interrupted.
 
 ## Usage
-To use the miner, download [the duino-js folder from the latest release](https://github.com/Hoiboy19/Duino-js/releases/latest), place the duino-js folder in the root of your site and add this to the end of your html:
+To use the miner, download [duino-js.min.js, worker.min.js and hashes.min.js from the latest release](https://github.com/Hoiboy19/Duino-js/releases/latest), and place them in the root of your site, then add this to the end of your html:
 ```html
-<script src="/duino-js/duino-js.min.js"></script> <!--imports the Duino-JS miner-->
+<script src="duino-js.min.js"></script> <!--imports the Duino-JS miner-->
 <script>
     var username = "Hoiboy19"; //put your username here (e.g. revox, ericddm, snehaislove or Hoiboy19), the default is Hoiboy19.
     var rigid = "Duino-JS"; //If you want to change the rig ID, you can change this. If you want to keep using "Duino-JS", you can remove this line.
