@@ -1,5 +1,4 @@
 importScripts("hashes.js");
-var sha1 = new Hashes.SHA1()
 
 onmessage = function (job)
 {
