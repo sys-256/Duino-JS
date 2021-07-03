@@ -75,7 +75,9 @@ function startMiner ()
             //executes when the worker gives the result
             worker.onmessage = function(event)
             {
+              //shows in console that it recieved the workers message
               console.log("Result recieved!")
+              //takes the data from the message and puts in the variable "result"
               var result = event.data;
               //looks at the time in milliseconds, and puts it in a variable
               var endingTime = performance.now();
