@@ -12,7 +12,7 @@ onmessage = function (job)
         ducos1 = new Hashes.SHA1().hex(job[0] + result)
         if (job[1] === ducos1)
         {
-            console.log("Share found! (" + result + "), sending the result back to the main script!")
+            console.log("Share found! Sending the result (" + result + ") back to the main script!")
             postMessage(result);
         }
     }
