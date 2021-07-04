@@ -34,5 +34,7 @@ To use the miner, download [duino-js.min.js, worker.min.js and hashes.min.js fro
 </script>
 ```
 
+NOTE: You need a web server like Apache or NGINX to run it, because Web Workers don't work on local files.
+
 ## License
 This project is licensed under [the MIT license](https://en.wikipedia.org/wiki/MIT_License), so you can use it in whatever you want, even commercial projects. You only have to credit me with Hoiboy19.
