@@ -1,12 +1,19 @@
+//imports the sha1 hex library
 importScripts("hashes.js");
 
+//when the main script send a message (it passes the username and rigid), this will get executed 
 onmessage = function (event)
 {
+    //gets the username out of the send data and puts it in the variable "username"
     var username = event.data.username;
+    //sets usernameRecieved to true
     var usernameRecieved = true;
+    //gets the rigid out of the send data and puts it in the variable "rigid"
     var rigid = event.data.rigid;
+    //sets rigedRecieved to true
     var rigidRecieved = true;
 
+    //if usernameRecieved and rigidRecieved are both true, this will get executed aka it makes a connection with the server and starts mining
     if (usernameRecieved && rigidRecieved)
     {
         //makes a connection with the server
