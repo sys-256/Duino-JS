@@ -1,5 +1,3 @@
-NOTE: Yes I know that it's not working now that pools are out, I will publish a hotfix soon™.
-
 ## Why
 I am developing my own site since a few months, and I wanted to make some money of it, but because you have to give a credit card number and your address to the ad provider (usually Google), I searched for alternatives.
 
