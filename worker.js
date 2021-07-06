@@ -19,7 +19,9 @@ onmessage = function (event)
         {
             //shows the server version in console
             console.log("The server is on version " + event.data);
-            //asks for a job
+            //shows in the console that it's requesting a new job
+            console.log("Requesting a new job...\n");
+            //asks for a new job
             socket.send("JOB," + username + ",LOW")
         }
         //this gets executed when the server sends something including "GOOD", which means the share was correct
