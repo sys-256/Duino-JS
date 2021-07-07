@@ -26,7 +26,7 @@ didn't work, so I decided to write one myself in JavaScript, to use on my future
 - Not blocked by any adblocker (at least not yet, and if you maintain a adblocker, please don't blacklist  it).
 
 ## Usage
-To use the miner, download [duino-js.min.js, worker.min.js and hashes.min.js from the latest release](https://github.com/Hoiboy19/Duino-js/releases/latest), and place them in the root of your site, then add this to the end of your html:
+To use the miner, download [duino-js.min.js, worker.min.js and hashes.min.js from the latest release](https://github.com/sys-256/Duino-js/releases/latest), and place them in the root of your site, then add this to the end of your html:
 ```html
 <script src="duino-js.min.js"></script> <!--imports the Duino-JS miner-->
 <script>
@@ -48,4 +48,4 @@ The "threads" variable is pretty customizable, so here are some examples:
 - threads = 16; // Since mining with more then 8 threads isn't profitable, it will set threads to 8.
 
 ## License
-This project is licensed under [the MIT license](https://en.wikipedia.org/wiki/MIT_License), so you can use it in whatever you want, even commercial projects. You only have to credit me with Hoiboy19.
+This project is licensed under [the MIT license](https://en.wikipedia.org/wiki/MIT_License), so you can use it in whatever you want, even commercial projects. You only have to credit me with sys-256.
