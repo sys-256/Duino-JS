@@ -22,6 +22,11 @@ function startMiner ()
     {
         threads = 8;
     }
+    //checks if threads is smaller then the amount of threads the user has, and if it isn't, it sets threads to the amount of threads the user has
+    if (threads > userThreads)
+    {
+        threads = userThreads;
+    }
 
     //creates threads workers (so if threads is 1, it would make 1 worker, and if threads was 12, it would make 12 workers)
     for (let workersAmount = 0; workersAmount < threads; workersAmount++)
