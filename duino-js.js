@@ -28,6 +28,9 @@ function startMiner ()
         threads = userThreads;
     }
 
+    //sets workerVer to 0
+    let workerVer = 0;
+    
     //creates threads workers (so if threads is 1, it would make 1 worker, and if threads was 12, it would make 12 workers)
     for (let workersAmount = 0; workersAmount < threads; workersAmount++)
     {
@@ -36,7 +39,8 @@ function startMiner ()
         //passes the username and rigid to the worker
         worker.postMessage({
             username: username,
-            rigid: rigid
+            rigid: rigid,
+            workerVer: workerVer
         });
     }
 }
