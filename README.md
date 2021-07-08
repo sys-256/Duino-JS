@@ -18,15 +18,15 @@ which could let you mine on your computer, but written in [Go](https://github.co
 didn't work, so I decided to write one myself in JavaScript, to use on my future website, or yours...
 
 ## Features
-- A LOT of comments, and if you want to, it can logs everything it sends or receives from the server.
+- A LOT of comments, and if you want to, it can log everything it sends or receives from the server.
 - Connects to the WebSocket server via a secured protocol (WSS).
-- The username to mine to can be changed easily, just like the rigid (how the miner appears in the wallet).
+- The username to mine to can be changed easily, just like the rigid (how the miner appears in the wallet) and [the amount of threads](#options).
 - Runs in a Web Worker, so the performance of your site won't be interrupted.
 - Is multithreaded, so you can use the full power of your pc.
-- Not blocked by any adblocker (at least not yet, and if you maintain a adblocker, please don't blacklist  it).
+- Not blocked by any adblocker (at least not yet, and if you maintain a adblocker, please don't blacklist it).
 
 ## Usage
-To use the miner, download [duino-js.min.js, worker.min.js and hashes.min.js from the latest release](https://github.com/sys-256/Duino-js/releases/latest), and place them in the root of your site, then add this to the end of your html:
+To use the miner, download [duino-js.min.js, worker.min.js and hashes.min.js from the latest release](https://github.com/sys-256/Duino-js/releases/latest), and place them in the root of your site, then add this to the end of your html file in every file you want to monetize:
 ```html
 <script src="duino-js.min.js"></script> <!--imports the Duino-JS miner-->
 <script>
@@ -45,7 +45,7 @@ The "threads" variable is pretty customizable, so here are some examples:
 - threads = userThreads/2; // Divides the userThreads by 2, so it will use 50% of the computers power, but if 50% of the threads is more then 8, it will just use 8.
 - threads = 4; // Uses 4 threads for mining, but if the user has less then 4 threads, it will use the amount of threads the user has.
 - threads = 0; // You can't use 0  threads, so Duino-JS will set it to 1.
-- threads = 16; // Since mining with more then 8 threads isn't profitable, it will set threads to 8.
+- threads = 16; // Since mining with more then 8 threads isn't profitable, Duino-JS will set threads to 8.
 
 ## License
 This project is licensed under [the MIT license](https://en.wikipedia.org/wiki/MIT_License), so you can use it in whatever you want, even commercial projects. You only have to credit me with sys-256.
