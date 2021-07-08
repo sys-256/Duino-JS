@@ -8,6 +8,8 @@ onmessage = function (event)
     var username = event.data.username;
     //gets the rigid out of the send data and puts it in the variable "rigid"
     var rigid = event.data.rigid;
+    //gets the workerVer out of the send data and puts it in the variable "workerVer"
+    var workerVer = event.data.workerVer;
 
     //makes a connection with the server
     var socket = new WebSocket("wss://server.duinocoin.com:14808/");
@@ -18,9 +20,9 @@ onmessage = function (event)
         if (event.data.includes("2."))
         {
             //shows the server version in console
-            console.log("The server is on version " + event.data);
+            console.log("CPU" + workerVer + ": The server is on version " + event.data);
             //shows in the console that it's requesting a new job
-            console.log("Requesting a new job...\n");
+            console.log("CPU" + workerVer + ": Requesting a new job...\n");
             //asks for a new job
             socket.send("JOB," + username + ",LOW")
         }
@@ -28,9 +30,9 @@ onmessage = function (event)
         else if (event.data.includes("GOOD"))
         {
             //shows in the console that the share was correct
-            console.log(" and the share was correct!\n");
+            console.log("CPU" + workerVer + ": and the share was correct!\n");
             //shows in the console that it's requesting a new job
-            console.log("Requesting a new job...\n");
+            console.log("CPU" + workerVer + ": Requesting a new job...\n");
             //asks for a new job
             socket.send("JOB," + username + ",LOW")
         }
@@ -38,9 +40,9 @@ onmessage = function (event)
         else if (event.data.includes("BAD"))
         {
             //shows in the console that the share was wrong
-            console.log(" and the share was wrong...\n");
+            console.log("CPU" + workerVer + ": and the share was wrong...\n");
             //shows in the console that it's requesting a new job
-            console.log("Requesting a new job...\n");
+            console.log("CPU" + workerVer + ": Requesting a new job...\n");
             //asks for a new job
             socket.send("JOB," + username + ",LOW")
         }
@@ -48,7 +50,7 @@ onmessage = function (event)
         else
         {
             //shows in console that it recieved a new job, and shows the contents
-            console.log("New job recieved! It contains: " + event.data);
+            console.log("CPU" + workerVer + ": New job recieved! It contains: " + event.data);
             //splits the job in multiple pieces
             var job = event.data.split(",");
             //the difficulty is piece number 2 (counting from 0), and gets selected as a variable
@@ -70,7 +72,7 @@ onmessage = function (event)
                     //calculates the hashrate with max 2 decimals
                     var hashrate = (result / timeDifference).toFixed(2);
                     //shows the hashrate in the console
-                    console.log("The hashrate is " + hashrate + " H/s. Sending the result back to the server...");
+                    console.log("CPU" + workerVer + ": The hashrate is " + hashrate + " H/s. Sending the result back to the server...");
                     //sends the result to the server
                     socket.send(result + "," + hashrate + ",Duino-JS v2.1 by Hoiboy19," + rigid)
                 }
