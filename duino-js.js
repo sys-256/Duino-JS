@@ -42,5 +42,7 @@ function startMiner ()
             rigid: rigid,
             workerVer: workerVer
         });
+        //adds 1 to the workerVer
+        workerVer++;
     }
 }
