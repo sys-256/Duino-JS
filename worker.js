@@ -11,7 +11,7 @@ onmessage = (event) => {
     const workerVer = event.data[2];
 
     //makes a connection with the server
-    let socket = new WebSocket("wss://server.duinocoin.com:14808/");
+    let socket = new WebSocket("wss://magi.duinocoin.com:14808/");
     //executes when the server sends a message
     socket.onmessage = (event) => {
         //this gets executed when the server sends something including "2.", which is the server version which it automattically sends
