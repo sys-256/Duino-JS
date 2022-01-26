@@ -1,73 +1,56 @@
-//imports the sha1 hex library
-importScripts("hashes.js");
+// Import the SHA1 library
+importScripts(`hashes.js`);
 
-//when the main script send a message (it passes the username and rigid), this will get executed 
-onmessage = (event) => {
-    //gets the username out of the send data and puts it in the variable "username"
-    const username = event.data[0];
-    //gets the rigid out of the send data and puts it in the variable "rigid"
-    const rigid = event.data[1];
-    //gets the workerVer out of the send data and puts it in the variable "workerVer"
-    const workerVer = event.data[2];
+onmessage = (event) => { // Execute on message from the main script
+    // Gets the data from the event.data variable
+    const [username, rigid, workerVer] = event.data;
 
-    //makes a connection with the server
-    let socket = new WebSocket("wss://magi.duinocoin.com:14808/");
-    //executes when the server sends a message
-    socket.onmessage = (event) => {
-        //this gets executed when the server sends something including "2.", which is the server version which it automattically sends
-        if (event.data.includes("2.")) {
-            //shows the server version in console
-            console.log("CPU" + workerVer + ": The server is on version " + event.data);
-            //shows in the console that it's requesting a new job
-            console.log("CPU" + workerVer + ": Requesting a new job...\n");
-            //asks for a new job
-            socket.send("JOB," + username + ",LOW");
-        }
-        //this gets executed when the server sends something including "GOOD", which means the share was correct
-        else if (event.data.includes("GOOD")) {
-            //shows in the console that the share was correct
-            console.log("CPU" + workerVer + ": and the share was correct!\n");
-            //shows in the console that it's requesting a new job
-            console.log("CPU" + workerVer + ": Requesting a new job...\n");
-            //asks for a new job
-            socket.send("JOB," + username + ",LOW");
-        }
-        //this gets executed when the server sends something including "BAD", which means the share was wrong
-        else if (event.data.includes("BAD")) {
-            //shows in the console that the share was wrong
-            console.log("CPU" + workerVer + ": and the share was wrong...\n");
-            //shows in the console that it's requesting a new job
-            console.log("CPU" + workerVer + ": Requesting a new job...\n");
-            //asks for a new job
-            socket.send("JOB," + username + ",LOW");
-        }
-        //this gets executed when the server sends something which doesn't agree with the one's above, which means it's probably a job
-        else {
-            //shows in console that it recieved a new job, and shows the contents
-            console.log("CPU" + workerVer + ": New job recieved! It contains: " + event.data);
-            //splits the job in multiple pieces
-            var job = event.data.split(",");
-            //the difficulty is piece number 2 (counting from 0), and gets selected as a variable
-            var difficulty = job[2];
-            //looks at the time in milliseconds, and puts it in a variable
-            var startingTime = performance.now();
-            //it starts hashing
-            for (result = 0; result < 100 * difficulty + 1; result++) {
-                //makes a variable called "ducos1", and it contains a calculated SHA1 hash for job[0] + the result
+    // Create a connection to the server
+    let socket = new WebSocket(`wss://magi.duinocoin.com:14808/`);
+    
+    socket.onmessage = (event) => { // Execute on message from the server
+        if (event.data.startsWith(`2.`)) { // If the server sends it's version, it's ready to send a job
+            // Show the server version in console
+            console.log(`CPU${workerVer}: The server is on version ${event.data}`);
+            // Show in the console that we're requesting a job
+            console.log(`CPU${workerVer}: Requesting a job...\n`);
+            // Asks for a job
+            socket.send(`JOB,${username},LOW`);
+        } else if (event.data === `GOOD`) { // If our share is correct
+            // Show in the console that the share was correct
+            console.log(`CPU${workerVer}: and the share was correct!\n`);
+            // Show in the console that we're requesting a new job
+            console.log(`CPU${workerVer}: Requesting a new job...\n`);
+            // Ask for a new job
+            socket.send(`JOB,${username},LOW`);
+        } else if (event.data === `BAD`) { // If our share is incorrect
+            // Show in the console that the share was wrong
+            console.log(`CPU${workerVer}: and the share was wrong...\n`);
+            // Show in the console that we're requesting a new job
+            console.log(`CPU${workerVer}: Requesting a new job...\n`);
+            // Ask for a new job
+            socket.send(`JOB,${username},LOW`);
+        } else { // If the server sends a job
+            // Show in console that we recieved a new job, and shows the contents
+            console.log(`CPU${workerVer}: New job recieved! It contains: ${event.data}`);
+            // Get the job from the server message
+            const job = event.data.split(`,`);
+            // Get the start time in milliseconds
+            const startingTime = performance.now();
+            // Start mining
+            for (let result = 0; result < 100 * job[2] + 1; result++) {
+                // A possibly correct SHA1 hash for job[0] + the result
                 ducos1 = new Hashes.SHA1().hex(job[0] + result);
-                //executes if the given job is the same as the calculated hash 
-                if (job[1] === ducos1) {
-                    //looks at the time in milliseconds, and puts it in a variable
-                    var endingTime = performance.now();
-                    //calculates the time it took to generate the hash, and divides it by 1000 (to convert it from milliseconds to seconds)
-                    var timeDifference = (endingTime - startingTime) / 1000;
-                    //calculates the hashrate with max 2 decimals
-                    var hashrate = (result / timeDifference).toFixed(2);
-                    //shows the hashrate in the console
-                    console.log("CPU" + workerVer + ": The hashrate is " + hashrate + " H/s. Sending the result back to the server...");
-                    //sends the result to the server
-                    socket.send(result + "," + hashrate + ",Duino-JS v3.3 by sys-256," + rigid);
-                    //breaks the script so it stops calculating the other possible hashes
+                if (job[1] === ducos1) { // If the hash is correct
+                    // The time it took to generate the correct hash, then convert it from milliseconds to seconds
+                    const timeDifference = (performance.now() - startingTime) / 1000;
+                    // Calulate the hashrate
+                    const hashrate = (result / timeDifference).toFixed(2);
+                    // Print the hashrate in the console
+                    console.log(`CPU${workerVer}: The hashrate is ${hashrate} H/s. Sending the result back to the server...`);
+                    // Send the result back to the server
+                    socket.send(`${result},${hashrate},Duino-JS v3.3 by sys-256,${rigid}`);
+                    // Break the script so it stops calculating the other possible hashes
                     break;
                 }
             }
