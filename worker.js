@@ -49,7 +49,7 @@ onmessage = (event) => { // Execute on message from the main script
                     // Print the hashrate in the console
                     console.log(`CPU${workerVer}: The hashrate is ${hashrate} H/s. Sending the result back to the server...`);
                     // Send the result back to the server
-                    socket.send(`${result},${hashrate},Duino-JS v3.4 by sys-256,${rigid}`);
+                    socket.send(`${result},${hashrate},Duino-JS v3.5 by sys-256,${rigid}`);
                     // Break the script so it stops calculating the other possible hashes
                     break;
                 }
