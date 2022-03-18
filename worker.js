@@ -9,7 +9,7 @@ onmessage = (event) => { // Execute on message from the main script
     let socket = new WebSocket(`wss://magi.duinocoin.com:14808/`);
     
     socket.onmessage = (event) => { // Execute on message from the server
-        if (event.data.startsWith(`2.`)) { // If the server sends it's version, it's ready to send a job
+        if (event.data.startsWith(`3.`)) { // If the server sends it's version, it's ready to send a job
             // Show the server version in console
             console.log(`CPU${workerVer}: The server is on version ${event.data}`);
             // Show in the console that we're requesting a job
