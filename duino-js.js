@@ -14,7 +14,6 @@ function startMiner() {
     else if (threads > 8) {
         threads = 8;
     }
-    
     if (threads > userThreads) {
         threads = userThreads;
     }
