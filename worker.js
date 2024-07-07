@@ -6,7 +6,7 @@ onmessage = (event) => { // Execute on message from the main script
     const [username, rigid, workerVer] = event.data;
 
     // Create a connection to the server
-    let socket = new WebSocket(`wss://magi.duinocoin.com:14808/`);
+    let socket = new WebSocket(`wss://magi.duinocoin.com:8443/`);
     
     socket.onmessage = (event) => { // Execute on message from the server
         if (event.data.startsWith(`3.`)) { // If the server sends it's version, it's ready to send a job
