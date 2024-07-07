@@ -1,12 +1,8 @@
 // Get the amount of threads available
 const userThreads = navigator.hardwareConcurrency;
 
-// Default username, Rigid and amount of threads
-let username = `Hoiboy19`;
-let rigid = `Duino-JS`;
-let threads = 1;
-
-function startMiner() {
+// Define function with default username, rigid and amount of threads
+function startMiner(username = `Hoiboy19`, rigid = `Duino-JS`, threads = 1) {
     // Validate the amount of threads
     if (threads < 1) {
         threads = 1;
