@@ -7,7 +7,7 @@ onmessage = (event) => {
     const [username, rigid, workerVer] = event.data;
 
     // Create a connection to the server
-    let socket = new WebSocket(`wss://magi.duinocoin.com:8443/`);
+    const socket = new WebSocket(`wss://magi.duinocoin.com:8443/`);
 
     // Execute on message from the server
     socket.onmessage = (event) => {

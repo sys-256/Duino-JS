@@ -18,16 +18,11 @@ function startMiner() {
         threads = userThreads;
     }
 
-    // Set workerVer
-    let workerVer = 0;
-
     // Loop through the amount of threads
-    for (let workersAmount = 0; workersAmount < threads; workersAmount++) {
+    for (let workerVer = 0; workerVer < threads; workerVer++) {
         // Create the worker
         worker = new Worker(`worker.js`);
         // Send the username, rigid and workerVer to the worker
         worker.postMessage([username, rigid, workerVer]);
-        // Add 1 to workerVer
-        workerVer++;
     }
 }
