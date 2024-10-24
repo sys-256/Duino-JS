@@ -37,7 +37,8 @@ To use the miner, download [duino-js.min.js, worker.min.js and hashes.min.js fro
     const username = `Hoiboy19`; // Put your username here (e.g. revox, ericddm, snehaislove or Hoiboy19), the default is Hoiboy19.
     const rigid = `Duino-JS`; // If you want to change the rig ID, you can change this. If you want to keep using "Duino-JS", you can remove this line.
     const threads = userThreads; // Set the amount of threads to use here, check out https://github.com/sys-256/Duino-JS#Options for more options. The default is 1.
-    startMiner(username, rigid, threads); // Starts the miner
+    const miningkey = "test"; // Put your mining key here. If you haven't set one, replace "test" with null
+    startMiner(username, rigid, threads, miningkey); // Starts the miner
 </script>
 ```
 

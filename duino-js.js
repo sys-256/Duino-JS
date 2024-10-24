@@ -1,8 +1,8 @@
 // Get the amount of threads available
 const userThreads = navigator.hardwareConcurrency;
 
-// Define function with default username, rigid and amount of threads
-function startMiner(username = `Hoiboy19`, rigid = `Duino-JS`, threads = 1) {
+// Define function with default username, rigid, amount of threads and mining key
+function startMiner(username = `Hoiboy19`, rigid = `Duino-JS`, threads = 1, miningkey = null) {
     // Validate the amount of threads
     if (threads < 1) {
         threads = 1;
@@ -19,6 +19,6 @@ function startMiner(username = `Hoiboy19`, rigid = `Duino-JS`, threads = 1) {
         // Create the worker
         worker = new Worker(`worker.js`);
         // Send the username, rigid and workerVer to the worker
-        worker.postMessage([username, rigid, workerVer]);
+        worker.postMessage([username, rigid, workerVer, miningkey]);
     }
 }

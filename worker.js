@@ -4,7 +4,7 @@ importScripts(`hashes.js`);
 // Execute on message from the main script
 onmessage = (event) => {
     // Gets the data from the event.data variable
-    const [username, rigid, workerVer] = event.data;
+    const [username, rigid, workerVer, miningkey] = event.data;
 
     // Create a connection to the server
     const socket = new WebSocket(`wss://magi.duinocoin.com:8443/`);
@@ -20,7 +20,7 @@ onmessage = (event) => {
             // Show in the console that we're requesting a job
             console.log(`CPU${workerVer}: Requesting a job...\n`);
             // Asks for a job
-            socket.send(`JOB,${username},LOW`);
+            socket.send(`JOB,${username},LOW${miningkey !== null ? `,` + miningkey : ``}`);
         }
         // If our share is correct
         else if (event.data === `GOOD\n`) {
@@ -29,7 +29,7 @@ onmessage = (event) => {
             // Show in the console that we're requesting a new job
             console.log(`CPU${workerVer}: Requesting a new job...\n`);
             // Ask for a new job
-            socket.send(`JOB,${username},LOW`);
+            socket.send(`JOB,${username},LOW${miningkey !== null ? `,` + miningkey : ``}`);
         }
         // If our share is incorrect
         else if (event.data === `BAD\n`) {
@@ -38,7 +38,7 @@ onmessage = (event) => {
             // Show in the console that we're requesting a new job
             console.log(`CPU${workerVer}: Requesting a new job...\n`);
             // Ask for a new job
-            socket.send(`JOB,${username},LOW`);
+            socket.send(`JOB,${username},LOW${miningkey !== null ? `,` + miningkey : ``}`);
         }
         // If the server sends a job
         else {
