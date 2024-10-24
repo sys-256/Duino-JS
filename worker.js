@@ -67,7 +67,7 @@ onmessage = (event) => {
                     );
                     // Send the result back to the server
                     socket.send(
-                        `${result},${hashrate},Duino-JS v4.0 by sys-256,${rigid}`,
+                        `${result},${hashrate},Duino-JS v4.1 by sys-256,${rigid}`,
                     );
                     // Break the script so it stops calculating the other possible hashes
                     break;
